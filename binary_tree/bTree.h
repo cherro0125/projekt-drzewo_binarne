@@ -1,14 +1,16 @@
 #pragma once
-
-struct node {
+#include <iostream>
+class node {
+public:
 	int key;
 	node *Left;
 	node *Right;
+	int get_val();
 	
 };
 
 
-class bTree
+class bTree 
 {
 public:
 	bTree();

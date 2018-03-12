@@ -90,5 +90,10 @@ node * bTree::search(int val, node *leaf)
 	else return NULL;
 }
 
-
-
+int node::get_val()
+{
+	if(this!=NULL)
+		return this->key;
+	std::cout << "Wartosc nie wystepuje w drzewie!\n";
+	return -1;
+}
