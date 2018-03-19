@@ -10,6 +10,7 @@ bTree::bTree()
 
 bTree::~bTree()
 {
+	destroy(root);
 }
 
 void bTree::insert(int val)
@@ -31,7 +32,7 @@ void bTree::destroy()
 	destroy(root);
 }
 
-node * bTree::search(int val)
+bool bTree::search(int val)
 {
 	return search(val, root);
 }
@@ -48,8 +49,8 @@ void bTree::insert(int val, node * leaf)
 		{
 			leaf->Left = new node;
 			leaf->Left->key = val;
-			leaf->Left->Left = NULL;    //Sets the left child of the child node to null
-			leaf->Left->Right = NULL;   //Sets the right child of the child node to null
+			leaf->Left->Left = NULL;    
+			leaf->Left->Right = NULL;   
 		}
 	}
 	else if (val >= leaf->key)
@@ -60,8 +61,8 @@ void bTree::insert(int val, node * leaf)
 		{
 			leaf->Right = new node;
 			leaf->Right->key = val;
-			leaf->Right->Left = NULL;  //Sets the left child of the child node to null
-			leaf->Right->Right = NULL; //Sets the right child of the child node to null
+			leaf->Right->Left = NULL;  
+			leaf->Right->Right = NULL; 
 		}
 	}
 }
@@ -76,18 +77,18 @@ void bTree::destroy(node *leaf)
 	}
 }
 
-node * bTree::search(int val, node *leaf)
+bool bTree::search(int val, node *leaf)
 {
 	if (leaf != NULL)
 	{
 		if (val == leaf->key)
-			return leaf;
+			return true;
 		if (val<leaf->key)
 			return search(val, leaf->Left);
 		else
 			return search(val, leaf->Right);
 	}
-	else return NULL;
+	else return false;
 }
 
 int node::get_val()
