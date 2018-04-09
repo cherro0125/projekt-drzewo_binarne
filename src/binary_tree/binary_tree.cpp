@@ -19,6 +19,10 @@ int main()
 	if (GUI::LoadAllegro() == GUI::ERROR_CODE)
 		return GUI::ERROR_CODE;
 
+	//GUI::GUIDisplay * display = new GUI::GUIDisplay(640, 480);
+	//
+	//int d = 5;
+	//display->printText(std::to_string(d));
 	
 	bTree *tree = new bTree;
 	tree->insert(2);

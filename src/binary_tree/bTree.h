@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include "GUI/GUIUtility.h"
 class node {
 public:
 	int key;
@@ -23,6 +24,8 @@ public:
 
 private:
 	node * root;
+	GUI::GUIDisplay * display;
+	int dis = 50;
 	void insert(int val, node *leaf);
 	void destroy(node *leaf);
 	bool search(int key, node *leaf);

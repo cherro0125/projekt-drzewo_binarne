@@ -1,9 +1,11 @@
 #include "bTree.h"
+#include <string>
 
 
 bTree::bTree()
 {
 	root = NULL;
+	this->display = new GUI::GUIDisplay(640, 480);
 }
 
 
@@ -27,10 +29,15 @@ void bTree::insert(int val)
 
 void bTree::inorder(node *root)
 {
+	
 	if (root != NULL)
 	{
 		inorder(root->Left);
 		std::cout << root->key << " ";
+		
+
+		
+		display->printText(std::to_string(root->key),this->dis+=50,50);
 		inorder(root->Right);
 	}
 }

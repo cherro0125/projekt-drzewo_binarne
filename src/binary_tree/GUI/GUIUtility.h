@@ -31,4 +31,37 @@ namespace GUI
 	static const int ERROR_CODE = -1;
 	int LoadAllegro();
 	void setConsoleColor(MessageType t);
+
+
+	/*
+	 *
+	 *	DISPLAY
+	 */
+
+	class GUIDisplay
+	{
+	private:
+		ALLEGRO_DISPLAY * display;
+		ALLEGRO_FONT *GUIFont;
+		const std::string defaultFontPath = "../../res/fonts/SourceSansPro-Bold.ttf";
+		const int fontSize = 16;
+		void loadDefaultFont();
+
+	public:
+		GUIDisplay();
+		GUIDisplay(int width, int height);
+		~GUIDisplay();
+		void CreateDisplay(int width, int height);
+		void setTitle(std::string title);
+		void printText(std::string text, float x, float y);
+		
+	};
+
+
+
+	/*
+	 *
+	 *
+	 *
+	 */
 }
