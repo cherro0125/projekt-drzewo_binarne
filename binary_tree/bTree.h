@@ -18,6 +18,7 @@ public:
 	void insert(int val);
 	void destroy();
 	bool search(int val);
+	void inorder();
 	
 
 private:
@@ -25,7 +26,7 @@ private:
 	void insert(int val, node *leaf);
 	void destroy(node *leaf);
 	bool search(int key, node *leaf);
-
+	void inorder(node *root);
 	
 };
 

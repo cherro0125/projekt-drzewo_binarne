@@ -26,6 +26,16 @@ void bTree::insert(int val)
 	}
 }
 
+void bTree::inorder(node *root)
+{
+	if (root != NULL)
+	{
+		inorder(root->Left);
+		std::cout << root->key << " ";
+		inorder(root->Right);
+	}
+}
+
 
 void bTree::destroy()
 {
@@ -35,6 +45,11 @@ void bTree::destroy()
 bool bTree::search(int val)
 {
 	return search(val, root);
+}
+
+void bTree::inorder()
+{
+	inorder(root);
 }
 
 
