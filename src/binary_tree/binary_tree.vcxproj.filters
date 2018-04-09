@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\GUI">
+      <UniqueIdentifier>{d5ca7dc6-58f8-46bd-a3c4-c94b382ffe13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GUI">
+      <UniqueIdentifier>{4dcf40ce-1aea-4c33-88e3-b3d4a0eb44eb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="binary_tree.cpp">
@@ -21,16 +27,16 @@
     <ClCompile Include="bTree.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GUIUtility.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="GUI\GUIUtility.cpp">
+      <Filter>Source Files\GUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bTree.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GUIUtility.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="GUI\GUIUtility.h">
+      <Filter>Header Files\GUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

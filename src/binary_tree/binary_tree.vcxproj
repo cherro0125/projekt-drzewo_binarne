@@ -161,11 +161,11 @@
   <ItemGroup>
     <ClCompile Include="binary_tree.cpp" />
     <ClCompile Include="bTree.cpp" />
-    <ClCompile Include="GUIUtility.cpp" />
+    <ClCompile Include="GUI\GUIUtility.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bTree.h" />
-    <ClInclude Include="GUIUtility.h" />
+    <ClInclude Include="GUI\GUIUtility.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
