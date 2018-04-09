@@ -7,14 +7,19 @@
 #include <locale>
 #include <string>
 #include <locale.h>
-
+#include "GUI/GUIUtility.h"
+#include "GUIUtility.h"
 
 
 using namespace std;
 
 int main()
 {
+	
+	if (GUI::LoadAllegro() == GUI::ERROR_CODE)
+		return GUI::ERROR_CODE;
 
+	//system("color 0F");
 	bTree *tree = new bTree;
 	tree->insert(2);
 	tree->insert(3);
