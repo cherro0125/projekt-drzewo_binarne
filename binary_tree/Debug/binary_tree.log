@@ -1,2 +1,6 @@
-﻿  binary_tree.cpp
-  binary_tree.vcxproj -> D:\Projekty\C++\algorytmy i struktury danych\binary_tree\Debug\binary_tree.exe
+﻿  stdafx.cpp
+  binary_tree.cpp
+  bTree.cpp
+  GuiUtils.cpp
+d:\projekty\c++\algorytmy i struktury danych\binary_tree\projekt-drzewo_binarne\binary_tree\gui\guiutils.cpp(7): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "stdafx.h"' to your source?
+  Generating Code...
