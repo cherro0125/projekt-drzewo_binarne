@@ -14,7 +14,51 @@ int GUI::LoadAllegro()
 	else
 	{
 		setConsoleColor(MessageType::T_INFO);
-		std::cout << "[INFO]Initialization Allegro Liblary Sucessfull" << std::endl;
+		std::cout << "[INFO]Initialization Allegro Liblary Sucessfull..." << std::endl;
+	}
+
+	if (!al_init_primitives_addon())
+	{
+
+
+		setConsoleColor(MessageType::T_ERROR);
+		std::cout << "[Error]Initialization Allegro Primitives Addon Faild!" << std::endl;
+		return -1;
+	}
+	else
+	{
+		setConsoleColor(MessageType::T_INFO);
+		std::cout << "[INFO]Initialization Allegro Primitives Addon Sucessfull..." << std::endl;
+	}
+
+
+	if (!al_init_font_addon())
+	{
+
+
+		setConsoleColor(MessageType::T_ERROR);
+		std::cout << "[Error]Initialization Allegro Font Addon Faild!" << std::endl;
+		return -1;
+	}
+	else
+	{
+		setConsoleColor(MessageType::T_INFO);
+		std::cout << "[INFO]Initialization Allegro Font Addon Sucessfull..." << std::endl;
+	}
+
+
+	if (!al_init_ttf_addon())
+	{
+
+
+		setConsoleColor(MessageType::T_ERROR);
+		std::cout << "[Error]Initialization Allegro TTF Addon Faild!" << std::endl;
+		return -1;
+	}
+	else
+	{
+		setConsoleColor(MessageType::T_INFO);
+		std::cout << "[INFO]Initialization Allegro TTF Addon Sucessfull..." << std::endl;
 	}
 
 
