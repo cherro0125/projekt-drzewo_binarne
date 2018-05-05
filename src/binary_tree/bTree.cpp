@@ -5,7 +5,7 @@
 bTree::bTree()
 {
 	root = NULL;
-	this->display = new GUI::GUIDisplay(640, 480);
+	this->display = new GUI::GUIDisplay(this->width, this->height);
 }
 
 
@@ -36,7 +36,7 @@ void bTree::inorder(node *root)
 		
 		inorder(root->Left);
 		std::cout << root->key << " ";
-		display->printText(std::to_string(root->key),this->dis+=50,this->dis+=50);
+		display->printText(std::to_string(root->key),this->dis+=50,50);
 		inorder(root->Right);
 	}
 }
@@ -109,20 +109,25 @@ node * bTree::nextNode(node * x)
 
 node * bTree::remove(node ** root, node * x)
 {
-	node * y = x->Parent, *z;
+	
+	if(x)
+	{	
+		node * y = x->Parent, *z;
+		if ((x->Left) && (x->Right))
+		{
+			z = (rand() % 2) ? remove(root, prevNode(x)) : remove(root, nextNode(x));
+			z->Left = x->Left;   if (z->Left)  z->Left->Parent = z;
+			z->Right = x->Right; if (z->Right) z->Right->Parent = z;
+		}
+		else z = (x->Left) ? x->Left : x->Right;
 
-	if ((x->Left) && (x->Right))
-	{
-		z = (rand() % 2) ? remove(root, prevNode(x)) : remove(root, nextNode(x));
-		z->Left = x->Left;   if (z->Left)  z->Left->Parent = z;
-		z->Right = x->Right; if (z->Right) z->Right->Parent = z;
+		if (z) z->Parent = y;
+
+		if (!y) *root = z;
+		else if (y->Left == x) y->Left = z; else y->Right = z;
 	}
-	else z = (x->Left) ? x->Left : x->Right;
 
-	if (z) z->Parent = y;
-
-	if (!y) *root = z;
-	else if (y->Left == x) y->Left = z; else y->Right = z;
+	
 
 	return x;
 }

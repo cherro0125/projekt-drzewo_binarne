@@ -28,6 +28,8 @@ public:
 private:
 	node * root;
 	GUI::GUIDisplay * display;
+	int width = 640;
+	int height = 480;
 	int dis = 50;
 	void insert(int val, node *leaf);
 	void destroy(node *leaf);
