@@ -38,7 +38,9 @@ int main()
 		cout << "Znaleziono wartosc " << searchVal << " w drzewie" << endl;
 	else
 		cout << "Nie znaleziono wartosci " << searchVal << " w drzewie" << endl;
-
+	cout << "Po usunieciu wartosci 3" << endl;
+	tree->remove(3);
+	tree->inorder();
 	getchar();
 	return 0;
 }
