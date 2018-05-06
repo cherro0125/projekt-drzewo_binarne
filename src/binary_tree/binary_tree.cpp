@@ -31,7 +31,7 @@ int main()
 	tree->insert(7);
 	tree->insert(92);
 	tree->insert(18);
-	tree->remove(3);
+	//tree->remove(3);
 	tree->inorder();
 	const int searchVal = 3;
 	cout << endl;
@@ -39,7 +39,7 @@ int main()
 		cout << "Znaleziono wartosc " << searchVal << " w drzewie" << endl;
 	else
 		cout << "Nie znaleziono wartosci " << searchVal << " w drzewie" << endl;
-	cout << "Po usunieciu wartosci 3" << endl;
+
 	getchar();
 	return 0;
 }

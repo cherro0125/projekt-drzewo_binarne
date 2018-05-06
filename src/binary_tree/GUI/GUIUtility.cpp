@@ -172,3 +172,14 @@ void GUI::GUIDisplay::printText(std::string text, float x, float y)
 		al_rest(2.0); //delay/opóżnienie
 	}
 }
+
+void GUI::GUIDisplay::printVector(float x1, float y1, float x2, float y2)
+{
+	if(this->display)
+	{
+		al_draw_line(x1, y1, x2, y2, al_map_rgb(0, 0, 255),2);
+		al_flip_display();
+	}
+}
+
+

@@ -54,6 +54,8 @@ namespace GUI
 		void CreateDisplay(int width, int height);
 		void setTitle(std::string title);
 		void printText(std::string text, float x, float y);
+		void printVector(float x1,float y1, float x2, float y2);
+	
 		
 	};
 

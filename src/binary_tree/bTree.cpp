@@ -28,16 +28,35 @@ void bTree::insert(int val)
 	}
 }
 
-void bTree::inorder(node *root)
+void bTree::inorder(node *root, float x, float y)
 {
 	
 	if (root != NULL)
 	{
-		
-		inorder(root->Left);
+		display->printText(std::to_string(root->key), x,y);
+		y += 20;
+		if(root->Left)
+		{
+			x -= 25;
+			
+			display->printText("/", x , y);
+		}
+			
+		if(root->Right)
+		{
+			x += 50;
+			//y += 20;
+			display->printText("\\", x, y);
+		}
+			
 		std::cout << root->key << " ";
-		display->printText(std::to_string(root->key),this->dis+=50,50);
-		inorder(root->Right);
+		inorder(root->Left,x-=60,y+40);
+		inorder(root->Right,x+=75,y+40);
+
+		//inorder(root->Left);
+		//std::cout << root->key << " ";
+		//display->printText(std::to_string(root->key),this->dis+=50,50);
+		//inorder(root->Right);
 	}
 }
 
@@ -150,7 +169,7 @@ node * bTree::searchNode(int val)
 
 void bTree::inorder()
 {
-	inorder(root);
+	inorder(root,this->width/2,0);
 }
 
 void bTree::remove(int val)
