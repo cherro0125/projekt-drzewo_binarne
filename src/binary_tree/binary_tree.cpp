@@ -13,32 +13,57 @@
 
 using namespace std;
 
+void print_main_menu_txt()
+{
+	cout << "MENU\n";
+	cout << "1. MULTIPLY ADD NUMBERS\n";
+	cout << "2. ADD NUMBER\n";
+	cout << "3. DESTROY TREE\n";
+	cout << "0. EXIT\n";
+}
+
+void print_menu()
+{
+	bTree *tree = new bTree;
+	int input;
+	do
+	{
+		print_main_menu_txt();
+		cin >> input;
+		switch (input)
+		{
+		case 1:
+			tree->add_multiply_num();
+			break;
+		case 3:
+			tree->destroy();
+			tree->clearDisplay();
+			tree->removeDisplay();
+			tree = new bTree;
+			break;
+		case 0:
+
+			break;
+
+		}
+		system("cls");
+	} while (input != 0);
+}
+
 int main()
 {
 	
 	if (GUI::LoadAllegro() == GUI::ERROR_CODE)
 		return GUI::ERROR_CODE;
+	print_menu();
 
-	//GUI::GUIDisplay * display = new GUI::GUIDisplay(640, 480);
 	//
-	//int d = 5;
-	//display->printText(std::to_string(d));
-	
-	bTree *tree = new bTree;
-	tree->insert(2);
-	tree->insert(3);
-	tree->insert(1);
-	tree->insert(7);
-	tree->insert(92);
-	tree->insert(18);
-	//tree->remove(3);
-	tree->inorder();
-	const int searchVal = 3;
-	cout << endl;
-	if (tree->search(searchVal))
-		cout << "Znaleziono wartosc " << searchVal << " w drzewie" << endl;
-	else
-		cout << "Nie znaleziono wartosci " << searchVal << " w drzewie" << endl;
+	//const int searchVal = 3;
+	//cout << endl;
+	//if (tree->search(searchVal))
+	//	cout << "Znaleziono wartosc " << searchVal << " w drzewie" << endl;
+	//else
+	//	cout << "Nie znaleziono wartosci " << searchVal << " w drzewie" << endl;
 
 	getchar();
 	return 0;

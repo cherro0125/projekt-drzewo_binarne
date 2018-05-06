@@ -15,7 +15,7 @@ public:
 class bTree
 {
 public:
-	bTree();
+	bTree(bool newDisplay = true);
 	~bTree();
 	void insert(int val);
 	void destroy();
@@ -23,6 +23,9 @@ public:
 	node *searchNode(int val);
 	void inorder();
 	void remove(int val);
+	void clearDisplay();
+	void removeDisplay();
+	void add_multiply_num();
 
 
 private:
@@ -43,6 +46,7 @@ private:
 	node * prevNode(node * x);
 	node * nextNode(node * x);
 	node * remove(node **root, node * x);
+	
 
 };
 

@@ -98,10 +98,15 @@ void GUI::GUIDisplay::loadDefaultFont()
 		this->GUIFont = al_load_ttf_font(this->defaultFontPath.c_str(), this->fontSize, 0);
 		if(!this->GUIFont)
 		{
+			this->GUIFont = al_load_ttf_font(this->defaultRelaseFontPath.c_str(), this->fontSize, 0);
+			if(!this->GUIFont)
+			{
+				setConsoleColor(MessageType::T_ERROR);
+				std::cout << "[ERROR]Loading default font failed!" << std::endl;
+				setConsoleColor(MessageType::T_NORMAL);
+			}
 		
-			setConsoleColor(MessageType::T_ERROR);
-			std::cout << "[ERROR]Loading default font failed!" << std::endl;
-			setConsoleColor(MessageType::T_NORMAL);
+			
 		}
 		else
 		{
@@ -155,6 +160,14 @@ void GUI::GUIDisplay::CreateDisplay(int width, int height)
 	}
 }
 
+void GUI::GUIDisplay::removeDisplay()
+{
+	if (this->display != NULL)
+	{
+		al_destroy_display(this->display);
+	}
+}
+
 void GUI::GUIDisplay::setTitle(std::string title)
 {
 	if(this->display)
@@ -169,7 +182,7 @@ void GUI::GUIDisplay::printText(std::string text, float x, float y)
 	{
 		al_draw_text(this->GUIFont, al_map_rgb(0,0,255), x, y, 0, text.c_str());
 		al_flip_display();
-		al_rest(2.0); //delay/opóżnienie
+		al_rest(this->delay); //delay/opóżnienie
 	}
 }
 
@@ -180,6 +193,13 @@ void GUI::GUIDisplay::printVector(float x1, float y1, float x2, float y2)
 		al_draw_line(x1, y1, x2, y2, al_map_rgb(0, 0, 255),2);
 		al_flip_display();
 	}
+}
+
+void GUI::GUIDisplay::clear()
+{
+	al_clear_to_color(al_map_rgb(0, 0, 0));
+
+	al_flip_display();
 }
 
 

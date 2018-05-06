@@ -44,7 +44,9 @@ namespace GUI
 		ALLEGRO_DISPLAY * display;
 		ALLEGRO_FONT *GUIFont;
 		const std::string defaultFontPath = "../../res/fonts/SourceSansPro-Bold.ttf";
+		const std::string defaultRelaseFontPath = "SourceSansPro-Bold.ttf";
 		const int fontSize = 16;
+		const float delay = 0.0;
 		void loadDefaultFont();
 
 	public:
@@ -52,9 +54,11 @@ namespace GUI
 		GUIDisplay(int width, int height);
 		~GUIDisplay();
 		void CreateDisplay(int width, int height);
+		void removeDisplay();
 		void setTitle(std::string title);
 		void printText(std::string text, float x, float y);
 		void printVector(float x1,float y1, float x2, float y2);
+		void clear();
 	
 		
 	};

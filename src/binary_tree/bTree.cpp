@@ -2,10 +2,14 @@
 #include <string>
 
 
-bTree::bTree()
+
+bTree::bTree(bool newDisplay)
 {
 	root = NULL;
-	this->display = new GUI::GUIDisplay(this->width, this->height);
+	if (newDisplay)
+		this->display = new GUI::GUIDisplay(this->width, this->height);
+		
+
 }
 
 
@@ -49,7 +53,7 @@ void bTree::inorder(node *root, float x, float y)
 			display->printText("\\", x, y);
 		}
 			
-		std::cout << root->key << " ";
+		//std::cout << root->key << " ";
 		inorder(root->Left,x-=60,y+40);
 		inorder(root->Right,x+=75,y+40);
 
@@ -176,6 +180,57 @@ void bTree::remove(int val)
 {
 	node *s = searchNode(val);
 	remove(&root, s);
+}
+
+void bTree::clearDisplay()
+{
+	this->display->clear();
+}
+
+void bTree::removeDisplay()
+{
+	this->display->removeDisplay();
+}
+
+void bTree::add_multiply_num()
+{
+	system("cls");
+	int c, num;
+	std::cout << "TYPE HOW MANY NUMBERS:" << std::endl;
+	std::cin >> c;
+	while (std::cin.fail())
+	{
+		system("cls");
+		setConsoleColor(GUI::MessageType::T_ERROR);
+		std::cout << "[ERROR] TYPE INTEGER NUMBER!\n";
+		setConsoleColor(GUI::MessageType::T_NORMAL);
+		std::cout << "TYPE HOW MANY NUMBERS:" << std::endl;
+		std::cin.clear();
+		std::cin.ignore(256, '\n');
+		std::cin >> c;
+	}
+	for (int i = 1; i <= c; i++)
+	{
+		std::cout << "NUM" << "[" << i << "]:";
+		std::cin >> num;
+		while (std::cin.fail())
+		{
+			system("cls");
+			setConsoleColor(GUI::MessageType::T_ERROR);
+			std::cout << "[ERROR] TYPE INTEGER NUMBER!\n";
+			setConsoleColor(GUI::MessageType::T_NORMAL);
+			std::cin.clear();
+			std::cin.ignore(256, '\n');
+			std::cout << "NUM" << "[" << i << "]:";
+			std::cin >> num;
+		}
+		std::cout << std::endl;
+		system("cls");
+		this->clearDisplay();
+		this->insert(num);
+		this->inorder();
+
+	}
 }
 
 
