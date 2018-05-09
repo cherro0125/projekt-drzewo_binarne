@@ -263,6 +263,17 @@ void bTree::drawVector(float x1, float y1, float x2, float y2)
 {
 }
 
+bool bTree::empty()
+{
+	if (root)
+		return false;
+	return true;
+}
+
+void bTree::playSong()
+{
+}
+
 
 
 void bTree::insert(int val, node * leaf)

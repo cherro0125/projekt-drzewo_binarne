@@ -61,6 +61,47 @@ int GUI::LoadAllegro()
 		std::cout << "[INFO]Initialization Allegro TTF Addon Sucessfull..." << std::endl;
 	}
 
+	if(!al_install_audio())
+	{
+
+
+		setConsoleColor(MessageType::T_ERROR);
+		std::cout << "[Error]Initialization Allegro AUDIO Addon Failed!" << std::endl;
+		return -1;
+	}
+	else
+	{
+		setConsoleColor(MessageType::T_INFO);
+		std::cout << "[INFO]Initialization Allegro AUDIO Addon Sucessfull..." << std::endl;
+	}
+
+	if (!al_init_acodec_addon())
+	{
+
+
+		setConsoleColor(MessageType::T_ERROR);
+		std::cout << "[Error]Initialization Allegro ACODED Addon Failed!" << std::endl;
+		return -1;
+	}
+	else
+	{
+		setConsoleColor(MessageType::T_INFO);
+		std::cout << "[INFO]Initialization Allegro ACODEC Addon Sucessfull..." << std::endl;
+	}
+
+	if (!al_reserve_samples(1))
+	{
+
+
+		setConsoleColor(MessageType::T_ERROR);
+		std::cout << "[Error]Initialization Allegro SAMPLE Addon Failed!" << std::endl;
+		return -1;
+	}
+	else
+	{
+		setConsoleColor(MessageType::T_INFO);
+		std::cout << "[INFO]Initialization Allegro SAMPLE Addon Sucessfull..." << std::endl;
+	}
 
 
 
@@ -120,13 +161,16 @@ void GUI::GUIDisplay::loadDefaultFont()
 GUI::GUIDisplay::GUIDisplay()
 {
 	this->display = NULL;
+	this->sample = NULL;
 }
 
 GUI::GUIDisplay::GUIDisplay(int width, int height)
 {
 	this->display = NULL;
+	this->sample = NULL;
 	CreateDisplay(width, height);
 	this->loadDefaultFont();
+	this->playSong();
 }
 
 GUI::GUIDisplay::~GUIDisplay()
@@ -134,6 +178,10 @@ GUI::GUIDisplay::~GUIDisplay()
 	if(this->display != NULL)
 	{
 		al_destroy_display(this->display);
+	}
+	if(this->sample != NULL)
+	{
+		al_destroy_sample(this->sample);
 	}
 }
 
@@ -165,6 +213,10 @@ void GUI::GUIDisplay::removeDisplay()
 	if (this->display != NULL)
 	{
 		al_destroy_display(this->display);
+	}
+	if (this->sample != NULL)
+	{
+		al_destroy_sample(this->sample);
 	}
 }
 
@@ -200,6 +252,36 @@ void GUI::GUIDisplay::clear()
 	al_clear_to_color(al_map_rgb(0, 0, 0));
 
 	al_flip_display();
+}
+
+void GUI::GUIDisplay::playSong()
+{
+	
+	if (!this->sample)
+	{
+		this->sample = al_load_sample(this->defaultSongPath.c_str());
+		if (!this->sample)
+		{
+			this->sample = al_load_sample(this->defaultRelaseSongPath.c_str());
+			if (!this->sample)
+			{
+				setConsoleColor(MessageType::T_ERROR);
+				std::cout << "[ERROR]Loading default song failed!" << std::endl;
+				setConsoleColor(MessageType::T_NORMAL);
+			}
+
+
+		}
+		else
+		{
+			setConsoleColor(MessageType::T_INFO);
+			std::cout << "[INFO]Loading default song Sucessfull..." << std::endl;
+			setConsoleColor(MessageType::T_NORMAL);
+			al_play_sample(this->sample, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_LOOP, NULL);
+
+			
+		}
+	}
 }
 
 

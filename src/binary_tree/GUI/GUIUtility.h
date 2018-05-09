@@ -12,6 +12,8 @@
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
 #include <allegro5/allegro_color.h>
+#include <allegro5/allegro_audio.h>
+#include <allegro5/allegro_acodec.h>
 /*
  *
  *	
@@ -43,10 +45,14 @@ namespace GUI
 	private:
 		ALLEGRO_DISPLAY * display;
 		ALLEGRO_FONT *GUIFont;
+		ALLEGRO_SAMPLE *sample;
 		const std::string defaultFontPath = "../../res/fonts/SourceSansPro-Bold.ttf";
 		const std::string defaultRelaseFontPath = "SourceSansPro-Bold.ttf";
 		const int fontSize = 16;
 		const float delay = 0.0;
+		const std::string defaultSongPath = "../../res/music/Default.wav";
+		const std::string defaultRelaseSongPath = "Default.wav";
+
 		void loadDefaultFont();
 
 	public:
@@ -59,6 +65,7 @@ namespace GUI
 		void printText(std::string text, float x, float y);
 		void printVector(float x1,float y1, float x2, float y2);
 		void clear();
+		void playSong();
 	
 		
 	};
