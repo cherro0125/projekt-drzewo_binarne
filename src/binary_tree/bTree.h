@@ -31,6 +31,7 @@ public:
 	bool empty();
 	void playSong();
 	bool searchShow(int val);
+	void searchNum();
 
 
 private:

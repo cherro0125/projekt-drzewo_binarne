@@ -17,8 +17,8 @@ using namespace std;
 void print_main_menu_txt()
 {
 	cout << "-----------------------------------------------------------\n";
-	cout << "                     Binary Search Tree by\n";
-	cout << "                              Authors:\n";
+	cout << "                     Binary Search Tree \n";
+	cout << "                           Authors:\n";
 	cout << "                     Dominik Kaliszewski\n";
 	cout << "                             and\n";
 	cout << "                     Karol Kolodziejczyk\n";
@@ -91,10 +91,7 @@ void print_menu()
 			Sleep(1200);
 			break;
 		case 6:
-			int num;
-			cin >> num;
-			//tree->clearDisplay();
-			tree->searchShow(num);
+			tree->searchNum();
 			break;
 		case 0:
 

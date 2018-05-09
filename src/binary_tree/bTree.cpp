@@ -316,6 +316,30 @@ bool bTree::searchShow(int val)
 	return searchShow(val, root,this->width/2,this->height/2);
 }
 
+void bTree::searchNum()
+{
+	system("cls");
+	int  num;
+	std::cout << "SEARCH NUM:" << std::endl;
+	std::cin >> num;
+	while (std::cin.fail())
+	{
+		system("cls");
+		setConsoleColor(GUI::MessageType::T_ERROR);
+		std::cout << "[ERROR] TYPE INTEGER NUMBER!\n";
+		setConsoleColor(GUI::MessageType::T_NORMAL);
+		std::cin.clear();
+		std::cin.ignore(256, '\n');
+		std::cout << "NUM:";
+		std::cin >> num;
+	}
+	std::cout << std::endl;
+	system("cls");
+	//this->clearDisplay();
+	//this->insert(num);
+	this->searchShow(num);
+}
+
 
 
 void bTree::insert(int val, node * leaf)
