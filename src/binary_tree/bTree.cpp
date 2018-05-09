@@ -157,6 +157,43 @@ node * bTree::remove(node ** root, node * x)
 	return x;
 }
 
+//TODO Wektory do poprawki 
+bool bTree::searchShow(int val, node * leaf,float x,float y) 
+{
+	if (leaf != NULL)
+	{
+		if (val == leaf->key)
+		{
+			display->printText(std::to_string(leaf->key), x, y);
+			//y += 20;
+			return true;
+		}
+		y += 20;
+		display->printText(std::to_string(leaf->key), x, y);
+			
+		if (val<leaf->key)
+		{
+			x -= 25;
+
+			//display->printText("/", x , y);
+			display->printVector(x + 25, y, x, y + 20);
+			//display->printText(std::to_string(leaf->Left->key), x, y);
+			return searchShow(val, leaf->Left,x-=60,y+40);
+		}
+		else
+		{
+			x += 50;
+			//y += 20;
+			//display->printText("\\", x, y);
+			display->printVector(x - 25, y, x, y + 20);
+			//display->printText(std::to_string(leaf->Right->key), x, y);
+			return searchShow(val, leaf->Right,x+=75,y+40);
+		}
+	
+	}
+	else return false;
+}
+
 
 void bTree::destroy()
 {
@@ -272,6 +309,11 @@ bool bTree::empty()
 
 void bTree::playSong()
 {
+}
+
+bool bTree::searchShow(int val)
+{
+	return searchShow(val, root,this->width/2,this->height/2);
 }
 
 

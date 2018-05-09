@@ -18,9 +18,12 @@ void print_main_menu_txt()
 {
 	cout << "-----------------------------------------------------------\n";
 	cout << "                     Binary Search Tree by\n";
+	cout << "                              Authors:\n";
 	cout << "                     Dominik Kaliszewski\n";
 	cout << "                             and\n";
 	cout << "                     Karol Kolodziejczyk\n";
+	cout << "                          Beta Tester:\n";
+	cout << "                            Anna Huk\n";
 	cout << "-----------------------------------------------------------\n";
 	cout << "-                           MENU                          -\n";
 	cout << "-----------------------------------------------------------\n";
@@ -86,6 +89,12 @@ void print_menu()
 				setConsoleColor(GUI::MessageType::T_NORMAL);
 			}
 			Sleep(1200);
+			break;
+		case 6:
+			int num;
+			cin >> num;
+			//tree->clearDisplay();
+			tree->searchShow(num);
 			break;
 		case 0:
 

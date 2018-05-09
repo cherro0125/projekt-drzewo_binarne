@@ -30,6 +30,7 @@ public:
 	void drawVector(float x1, float y1, float x2, float y2);
 	bool empty();
 	void playSong();
+	bool searchShow(int val);
 
 
 private:
@@ -50,6 +51,8 @@ private:
 	node * prevNode(node * x);
 	node * nextNode(node * x);
 	node * remove(node **root, node * x);
+	bool searchShow(int val, node *leaf, float x, float y);
+	
 	
 
 };
