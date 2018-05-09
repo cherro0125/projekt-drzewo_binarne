@@ -43,14 +43,16 @@ void bTree::inorder(node *root, float x, float y)
 		{
 			x -= 25;
 			
-			display->printText("/", x , y);
+			//display->printText("/", x , y);
+			display->printVector(x + 25, y, x, y+20);
 		}
 			
 		if(root->Right)
 		{
 			x += 50;
 			//y += 20;
-			display->printText("\\", x, y);
+			//display->printText("\\", x, y);
+			display->printVector(x - 25, y, x, y+20);
 		}
 			
 		//std::cout << root->key << " ";
@@ -231,6 +233,34 @@ void bTree::add_multiply_num()
 		this->inorder();
 
 	}
+}
+
+void bTree::add_single_num()
+{
+	system("cls");
+	int  num;
+	std::cout << "NUM:" << std::endl;
+	std::cin >> num;
+	while (std::cin.fail())
+	{
+		system("cls");
+		setConsoleColor(GUI::MessageType::T_ERROR);
+		std::cout << "[ERROR] TYPE INTEGER NUMBER!\n";
+		setConsoleColor(GUI::MessageType::T_NORMAL);
+		std::cin.clear();
+		std::cin.ignore(256, '\n');
+		std::cout << "NUM:";
+		std::cin >> num;
+	}
+	std::cout << std::endl;
+	system("cls");
+	this->clearDisplay();
+	this->insert(num);
+	this->inorder();
+}
+
+void bTree::drawVector(float x1, float y1, float x2, float y2)
+{
 }
 
 

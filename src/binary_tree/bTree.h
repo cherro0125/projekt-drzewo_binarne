@@ -26,13 +26,15 @@ public:
 	void clearDisplay();
 	void removeDisplay();
 	void add_multiply_num();
+	void add_single_num();
+	void drawVector(float x1, float y1, float x2, float y2);
 
 
 private:
 	node * root;
 	GUI::GUIDisplay * display;
-	int width = 640;
-	int height = 480;
+	int width = 1024;
+	int height = 768;
 	int dis = 50;
 	void insert(int val, node *leaf);
 	void destroy(node *leaf);

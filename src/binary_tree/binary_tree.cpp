@@ -35,6 +35,9 @@ void print_menu()
 		case 1:
 			tree->add_multiply_num();
 			break;
+		case 2:
+			tree->add_single_num();
+			break;
 		case 3:
 			tree->destroy();
 			tree->clearDisplay();
