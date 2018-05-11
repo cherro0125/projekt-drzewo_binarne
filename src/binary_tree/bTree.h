@@ -32,6 +32,7 @@ public:
 	void playSong();
 	bool searchShow(int val);
 	void searchNum();
+	void removeShow();
 
 
 private:

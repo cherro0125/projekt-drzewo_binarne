@@ -320,7 +320,7 @@ void bTree::searchNum()
 {
 	system("cls");
 	int  num;
-	std::cout << "SEARCH NUM:" << std::endl;
+	std::cout << "SEARCH NUM:";
 	std::cin >> num;
 	while (std::cin.fail())
 	{
@@ -338,6 +338,30 @@ void bTree::searchNum()
 	//this->clearDisplay();
 	//this->insert(num);
 	this->searchShow(num);
+}
+
+void bTree::removeShow()
+{
+	system("cls");
+	int  num;
+	std::cout << "NUM TO DELETE:";
+	std::cin >> num;
+	while (std::cin.fail())
+	{
+		system("cls");
+		setConsoleColor(GUI::MessageType::T_ERROR);
+		std::cout << "[ERROR] TYPE INTEGER NUMBER!\n";
+		setConsoleColor(GUI::MessageType::T_NORMAL);
+		std::cin.clear();
+		std::cin.ignore(256, '\n');
+		std::cout << "NUM TO DELETE:";
+		std::cin >> num;
+	}
+	std::cout << std::endl;
+	system("cls");
+	this->remove(num);
+	this->clearDisplay();
+	this->inorder();
 }
 
 

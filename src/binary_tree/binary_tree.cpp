@@ -57,20 +57,29 @@ void print_menu()
 			tree->add_single_num();
 			break;
 		case 3:
-			if (!tree->empty())
-			{
-				cout << "What number do you want to delete??\n";
-				cin >> value;
-				tree->remove(value);
-				tree->clearDisplay();
-				tree->inorder();
-			}
+			//if (!tree->empty())
+			//{
+			//	cout << "What number do you want to delete??\n";
+			//	cin >> value;
+			//	tree->remove(value);
+			//	tree->clearDisplay();
+			//	tree->inorder();
+			//}
+			//else
+			//{
+			//	setConsoleColor(GUI::MessageType::T_ERROR);
+			//	cout << "TREE IS EMPTY!\n";
+			//	setConsoleColor(GUI::MessageType::T_NORMAL);
+			//	Sleep(1200);
+			//}
+			if(!tree->empty())
+				tree->removeShow();
 			else
 			{
 				setConsoleColor(GUI::MessageType::T_ERROR);
-				cout << "TREE IS EMPTY!\n";
+				cout << "TREE IS EMPTY! ADD SOME NUMBERS!";
 				setConsoleColor(GUI::MessageType::T_NORMAL);
-				Sleep(1000);
+				Sleep(1200);
 			}
 			break;
 		case 4:
