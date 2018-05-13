@@ -146,6 +146,13 @@ void GUI::GUIDisplay::loadDefaultFont()
 				std::cout << "[ERROR]Loading default font failed!" << std::endl;
 				setConsoleColor(MessageType::T_NORMAL);
 			}
+			else
+			{
+
+				setConsoleColor(MessageType::T_INFO);
+				std::cout << "[INFO]Loading default font Sucessfull..." << std::endl;
+				setConsoleColor(MessageType::T_NORMAL);
+			}
 		
 			
 		}
@@ -268,6 +275,13 @@ void GUI::GUIDisplay::playSong()
 				setConsoleColor(MessageType::T_ERROR);
 				std::cout << "[ERROR]Loading default song failed!" << std::endl;
 				setConsoleColor(MessageType::T_NORMAL);
+			}
+			else
+			{
+				setConsoleColor(MessageType::T_INFO);
+				std::cout << "[INFO]Loading default song Sucessfull..." << std::endl;
+				setConsoleColor(MessageType::T_NORMAL);
+				al_play_sample(this->sample, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_LOOP, NULL);
 			}
 
 

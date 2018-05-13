@@ -296,9 +296,6 @@ void bTree::add_single_num()
 	this->inorder();
 }
 
-void bTree::drawVector(float x1, float y1, float x2, float y2)
-{
-}
 
 bool bTree::empty()
 {
@@ -307,9 +304,7 @@ bool bTree::empty()
 	return true;
 }
 
-void bTree::playSong()
-{
-}
+
 
 bool bTree::searchShow(int val)
 {

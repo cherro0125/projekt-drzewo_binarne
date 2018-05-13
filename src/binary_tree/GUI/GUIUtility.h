@@ -29,7 +29,7 @@ namespace GUI
 		T_INFO,
 		T_NORMAL
 	};
-	//HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
+	
 	static const int ERROR_CODE = -1;
 	int LoadAllegro();
 	void setConsoleColor(MessageType t);

@@ -27,9 +27,7 @@ public:
 	void removeDisplay();
 	void add_multiply_num();
 	void add_single_num();
-	void drawVector(float x1, float y1, float x2, float y2);
 	bool empty();
-	void playSong();
 	bool searchShow(int val);
 	void searchNum();
 	void removeShow();
