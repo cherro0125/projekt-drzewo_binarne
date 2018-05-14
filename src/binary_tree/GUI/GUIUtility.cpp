@@ -194,6 +194,9 @@ GUI::GUIDisplay::~GUIDisplay()
 
 void GUI::GUIDisplay::CreateDisplay(int width, int height)
 {
+	al_set_new_display_flags(ALLEGRO_WINDOWED | ALLEGRO_OPENGL);
+	al_set_new_display_option(ALLEGRO_SAMPLE_BUFFERS, 1, ALLEGRO_SUGGEST);
+	al_set_new_display_option(ALLEGRO_SAMPLES, 8, ALLEGRO_SUGGEST);
 	this->display = al_create_display(width, height);
 	if(!this->display)
 	{
@@ -203,7 +206,7 @@ void GUI::GUIDisplay::CreateDisplay(int width, int height)
 	}
 	else
 	{
-		al_clear_to_color(al_map_rgb(0, 0, 0));
+		al_clear_to_color(al_map_rgb(255, 255, 255));
 
 		//al_flip_display();
 		this->setTitle("Binary Tree Search");
@@ -239,7 +242,7 @@ void GUI::GUIDisplay::printText(std::string text, float x, float y)
 {
 	if((this->display)&&(this->GUIFont))
 	{
-		al_draw_text(this->GUIFont, al_map_rgb(0,0,255), x, y, 0, text.c_str());
+		al_draw_text(this->GUIFont, al_map_rgb(0,0,255), x, y, ALLEGRO_ALIGN_CENTRE, text.c_str());
 		al_flip_display();
 		al_rest(this->delay); //delay/opóżnienie
 	}
@@ -256,7 +259,7 @@ void GUI::GUIDisplay::printVector(float x1, float y1, float x2, float y2)
 
 void GUI::GUIDisplay::clear()
 {
-	al_clear_to_color(al_map_rgb(0, 0, 0));
+	al_clear_to_color(al_map_rgb(255, 255, 255));
 
 	al_flip_display();
 }
@@ -296,6 +299,26 @@ void GUI::GUIDisplay::playSong()
 			
 		}
 	}
+}
+
+void GUI::GUIDisplay::printCircle(float x, float y)
+{
+	if(this->display)
+	{
+		al_draw_circle(x, y, this->circle_r, al_map_rgb(0, 0, 255), 2);
+		al_flip_display();
+
+	}
+}
+
+int GUI::GUIDisplay::getFontSize()
+{
+	return this->fontSize;
+}
+
+float GUI::GUIDisplay::getR()
+{
+	return this->circle_r;
 }
 
 

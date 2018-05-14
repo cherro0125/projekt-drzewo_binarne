@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include <iostream>
 #include <stdlib.h>
 #include <stdio.h>
@@ -48,8 +48,9 @@ namespace GUI
 		ALLEGRO_SAMPLE *sample;
 		const std::string defaultFontPath = "../../res/fonts/SourceSansPro-Bold.ttf";
 		const std::string defaultRelaseFontPath = "SourceSansPro-Bold.ttf";
-		const int fontSize = 16;
-		const float delay = 0.0;
+		int fontSize = 16; //będzie zmieniana wartość
+		const float delay = 0.0f;
+		float circle_r = 20.0f;
 		const std::string defaultSongPath = "../../res/music/Default.wav";
 		const std::string defaultRelaseSongPath = "Default.wav";
 
@@ -66,7 +67,9 @@ namespace GUI
 		void printVector(float x1,float y1, float x2, float y2);
 		void clear();
 		void playSong();
-	
+		void printCircle(float x, float y);
+		int getFontSize();
+		float getR();
 		
 	};
 

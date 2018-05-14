@@ -1,4 +1,4 @@
-#include "bTree.h"
+﻿#include "bTree.h"
 #include <string>
 
 
@@ -37,27 +37,34 @@ void bTree::inorder(node *root, float x, float y)
 	
 	if (root != NULL)
 	{
-		display->printText(std::to_string(root->key), x,y);
+		display->printCircle(x, y);
+		display->printText(std::to_string(root->key), x,y-(display->getFontSize()/2));
+		
+		
 		y += 20;
+		//TODO naprawić zlewanie sie momentami elementow prawych i lewych
 		if(root->Left)
 		{
-			x -= 25;
+			//x -= 25;
 			
 			//display->printText("/", x , y);
-			display->printVector(x + 25, y, x, y+20);
+			//display->printVector(x  + (display->getFontSize() / 2), y, x, y+20 );
+			//display->printVector(x +40 - display->getR()*2 , y-40 + display->getR()*2, x-40, y+40-display->getR());
+			display->printVector(x + 40 - display->getR()*3 , y - 40 + display->getR() , x - 40, y + 40 - display->getR());
 		}
 			
 		if(root->Right)
 		{
-			x += 50;
+			//x += 50;
 			//y += 20;
 			//display->printText("\\", x, y);
-			display->printVector(x - 25, y, x, y+20);
+			//display->printVector(x  - (display->getFontSize() / 2), y, x, y+20);
+			display->printVector(x +40-display->getR(), y-40+display->getR(), x+40, y+40-display->getR());
 		}
 			
 		//std::cout << root->key << " ";
-		inorder(root->Left,x-=60,y+40);
-		inorder(root->Right,x+=75,y+40);
+		inorder(root->Left,x-40,y+40);
+		inorder(root->Right,x+40,y+40);
 
 		//inorder(root->Left);
 		//std::cout << root->key << " ";
@@ -212,7 +219,7 @@ node * bTree::searchNode(int val)
 
 void bTree::inorder()
 {
-	inorder(root,this->width/2,0);
+	inorder(root,this->width/2,30);
 }
 
 void bTree::remove(int val)
