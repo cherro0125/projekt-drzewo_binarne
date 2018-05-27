@@ -31,6 +31,7 @@ public:
 	bool searchShow(int val);
 	void searchNum();
 	void removeShow();
+	void delete_node(int val);
 
 
 private:
@@ -38,7 +39,7 @@ private:
 	GUI::GUIDisplay * display;
 	int width = 1024;
 	int height = 768;
-	int dis = 50;
+	int dis = 40;
 	void insert(int val, node *leaf);
 	void destroy(node *leaf);
 	bool search(int val, node *leaf);
@@ -52,6 +53,10 @@ private:
 	node * nextNode(node * x);
 	node * remove(node **root, node * x);
 	bool searchShow(int val, node *leaf, float x, float y);
+	node *isolate_predecessor(node **root);
+	void delete_node(node **root, int val);
+
+
 	
 	
 

@@ -50,7 +50,7 @@ void bTree::inorder(node *root, float x, float y)
 			//display->printText("/", x , y);
 			//display->printVector(x  + (display->getFontSize() / 2), y, x, y+20 );
 			//display->printVector(x +40 - display->getR()*2 , y-40 + display->getR()*2, x-40, y+40-display->getR());
-			display->printVector(x + 40 - display->getR()*3 , y - 40 + display->getR() , x - 40, y + 40 - display->getR());
+			display->printVector(x + this->dis - display->getR()*3 , y - this->dis + display->getR() , x - this->dis, y + this->dis - display->getR());
 		}
 			
 		if(root->Right)
@@ -59,12 +59,12 @@ void bTree::inorder(node *root, float x, float y)
 			//y += 20;
 			//display->printText("\\", x, y);
 			//display->printVector(x  - (display->getFontSize() / 2), y, x, y+20);
-			display->printVector(x +40-display->getR(), y-40+display->getR(), x+40, y+40-display->getR());
+			display->printVector(x +this->dis - display->getR(), y- this->dis +display->getR(), x+ this->dis, y+ this->dis -display->getR());
 		}
 			
 		//std::cout << root->key << " ";
-		inorder(root->Left,x-40,y+40);
-		inorder(root->Right,x+40,y+40);
+		inorder(root->Left,x- this->dis,y+ this->dis);
+		inorder(root->Right,x+ this->dis,y+ this->dis);
 
 		//inorder(root->Left);
 		//std::cout << root->key << " ";
@@ -199,6 +199,39 @@ bool bTree::searchShow(int val, node * leaf,float x,float y)
 	
 	}
 	else return false;
+}
+
+node * bTree::isolate_predecessor(node ** root)
+{
+	while (*root && (*root)->Right)
+		root = &(*root)->Right;
+	node *predecessor = *root;
+	if (*root)
+		*root = (*root)->Left;
+	return predecessor;
+}
+
+void bTree::delete_node(node ** root, int val)
+{
+	while (*root && (*root)->key != val) {
+		if ((*root)->key>val)
+			root = &(*root)->Left;
+		if ((*root)->key<val)
+			root = &(*root)->Right;
+	}
+	if (*root) {
+		node *node = *root;
+		if (!node->Left)
+			*root = (*root)->Right;
+		else if (!node->Right)
+			*root = (*root)->Left;
+		else {
+			node = isolate_predecessor(&(*root)->Left);
+			(*root)->key = node->key;
+			
+		}
+		delete(node);
+	}
 }
 
 
@@ -361,9 +394,15 @@ void bTree::removeShow()
 	}
 	std::cout << std::endl;
 	system("cls");
-	this->remove(num);
+	//this->remove(num);
+	this->delete_node(num);
 	this->clearDisplay();
 	this->inorder();
+}
+
+void bTree::delete_node(int val)
+{
+	delete_node(&root, val);
 }
 
 
