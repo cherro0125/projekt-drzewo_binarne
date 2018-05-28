@@ -7,9 +7,8 @@
 #include "bTree.h"
 #include <locale>
 #include <string>
-#include <locale.h>
 #include "GUI/GUIUtility.h"
-#include <set>
+#include <thread>
 
 
 using namespace std;
@@ -45,29 +44,38 @@ void print_main_menu_txt()
 		
 }
 
+void display_exit_thread(bTree *tree)
+{
+	while(true)
+	{
+		ALLEGRO_EVENT ev;
+		ALLEGRO_TIMEOUT timeout;
+		al_init_timeout(&timeout, 0.06);
+
+		bool get_event = al_wait_for_event_until(tree->get_display()->event_queue, &ev, &timeout);
+
+		if (get_event && ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
+			cout << "test";
+			break;
+		}
+	}
+	exit(-1);
+}
+
 
 /**
  * \brief Funkcja wyświetla główne menu z jego obsługą
  * \return void
  */
-int print_menu()
+int print_menu(bTree *tree)
 {
 	
-	bTree *tree = new bTree;
-	//tree->wait_for_close_event();
 	int input;
 
 	do
 	{
-		//ALLEGRO_EVENT ev;
-		//ALLEGRO_TIMEOUT timeout;
-		//al_init_timeout(&timeout, 0.06);
-
-		//bool get_event = al_wait_for_event_until(tree->get_display()->event_queue, &ev, &timeout);
-
-		//if (get_event && ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
-		//	break;
-		//}
+		
+	
 		
 		print_main_menu_txt();
 		cout << "CHOICE:";
@@ -81,21 +89,6 @@ int print_menu()
 			tree->add_single_num();
 			break;
 		case 3:
-			//if (!tree->empty())
-			//{
-			//	cout << "What number do you want to delete??\n";
-			//	cin >> value;
-			//	tree->remove(value);
-			//	tree->clearDisplay();
-			//	tree->print_Tree();
-			//}
-			//else
-			//{
-			//	setConsoleColor(GUI::MessageType::T_ERROR);
-			//	cout << "TREE IS EMPTY!\n";
-			//	setConsoleColor(GUI::MessageType::T_NORMAL);
-			//	Sleep(1200);
-			//}
 			if(!tree->empty())
 				tree->removeShow();
 			else
@@ -157,7 +150,7 @@ int print_menu()
 			tree->load_test_data();
 			break;
 		case 0:
-
+			exit(-1);
 			break;
 
 		}
@@ -168,24 +161,18 @@ int print_menu()
 	return 1;
 }
 
+
+
 int main()
 {
 	
 	if (GUI::LoadAllegro() == GUI::ERROR_CODE)
 		return GUI::ERROR_CODE;
-	print_menu();
-		
-	
-	
-	//
-	//
-	//const int searchVal = 3;
-	//cout << endl;
-	//if (tree->search(searchVal))
-	//	cout << "Znaleziono wartosc " << searchVal << " w drzewie" << endl;
-	//else
-	//	cout << "Nie znaleziono wartosci " << searchVal << " w drzewie" << endl;
 
+	bTree *tree = new bTree;
+	thread t_exit(display_exit_thread,tree);
+	print_menu(tree);
+	t_exit.join();
 	getchar();
 	return 0;
 }
