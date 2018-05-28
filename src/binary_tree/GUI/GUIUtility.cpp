@@ -209,7 +209,7 @@ void GUI::GUIDisplay::CreateDisplay(int width, int height)
 		al_clear_to_color(al_map_rgb(255, 255, 255));
 
 		//al_flip_display();
-		this->setTitle("Binary Tree Search");
+		this->setTitle("Binary Search Tree");
 		setConsoleColor(MessageType::T_INFO);
 		std::cout << "[INFO]Creatation display Sucessfull..." << std::endl;
 		setConsoleColor(MessageType::T_NORMAL);
@@ -319,6 +319,16 @@ int GUI::GUIDisplay::getFontSize()
 float GUI::GUIDisplay::getR()
 {
 	return this->circle_r;
+}
+
+int GUI::GUIDisplay::wait_for_close()
+{
+	ALLEGRO_EVENT ev;
+	ALLEGRO_EVENT_QUEUE *a_queue = NULL;
+	al_wait_for_event(a_queue, &ev);
+
+	if (ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE)
+		return 0;
 }
 
 

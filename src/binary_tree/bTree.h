@@ -21,7 +21,7 @@ public:
 	void destroy();
 	bool search(int val);
 	node *searchNode(int val);
-	void inorder();
+	void print_Tree();
 	void remove(int val);
 	void clearDisplay();
 	void removeDisplay();
@@ -32,6 +32,8 @@ public:
 	void searchNum();
 	void removeShow();
 	void delete_node(int val);
+	int wait_for_close_event();
+	void load_test_data();
 
 
 private:
@@ -44,7 +46,7 @@ private:
 	void destroy(node *leaf);
 	bool search(int val, node *leaf);
 	node * searchNode(int val, node *leaf);
-	void inorder(node *root, float x, float y);
+	void print_Tree(node *root, float x, float y);
 	int minKey(node * root);
 	int maxKey(node * root);
 	node * minNode(node * root);

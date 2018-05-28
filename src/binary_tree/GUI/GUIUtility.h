@@ -70,6 +70,7 @@ namespace GUI
 		void printCircle(float x, float y);
 		int getFontSize();
 		float getR();
+		int wait_for_close();
 		
 	};
 

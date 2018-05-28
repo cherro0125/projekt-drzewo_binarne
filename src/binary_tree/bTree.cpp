@@ -32,7 +32,7 @@ void bTree::insert(int val)
 	}
 }
 
-void bTree::inorder(node *root, float x, float y)
+void bTree::print_Tree(node *root, float x, float y)
 {
 	
 	if (root != NULL)
@@ -63,13 +63,13 @@ void bTree::inorder(node *root, float x, float y)
 		}
 			
 		//std::cout << root->key << " ";
-		inorder(root->Left,x- this->dis,y+ this->dis);
-		inorder(root->Right,x+ this->dis,y+ this->dis);
+		print_Tree(root->Left,x- this->dis,y+ this->dis);
+		print_Tree(root->Right,x+ this->dis,y+ this->dis);
 
-		//inorder(root->Left);
+		//print_Tree(root->Left);
 		//std::cout << root->key << " ";
 		//display->printText(std::to_string(root->key),this->dis+=50,50);
-		//inorder(root->Right);
+		//print_Tree(root->Right);
 	}
 }
 
@@ -167,34 +167,76 @@ node * bTree::remove(node ** root, node * x)
 //TODO Wektory do poprawki 
 bool bTree::searchShow(int val, node * leaf,float x,float y) 
 {
+
+	//if (root != NULL)
+	//{
+	//	display->printCircle(x, y);
+	//	display->printText(std::to_string(root->key), x, y - (display->getFontSize() / 2));
+
+
+	//	y += 20;
+
+	//	if (root->Left)
+	//	{
+	//		//x -= 25;
+
+	//		//display->printText("/", x , y);
+	//		//display->printVector(x  + (display->getFontSize() / 2), y, x, y+20 );
+	//		//display->printVector(x +40 - display->getR()*2 , y-40 + display->getR()*2, x-40, y+40-display->getR());
+	//		display->printVector(x + this->dis - display->getR() * 3, y - this->dis + display->getR(), x - this->dis, y + this->dis - display->getR());
+	//	}
+
+	//	if (root->Right)
+	//	{
+	//		//x += 50;
+	//		//y += 20;
+	//		//display->printText("\\", x, y);
+	//		//display->printVector(x  - (display->getFontSize() / 2), y, x, y+20);
+	//		display->printVector(x + this->dis - display->getR(), y - this->dis + display->getR(), x + this->dis, y + this->dis - display->getR());
+	//	}
+
+	//	//std::cout << root->key << " ";
+	//	print_Tree(root->Left, x - this->dis, y + this->dis);
+	//	print_Tree(root->Right, x + this->dis, y + this->dis);
+
+	//	//print_Tree(root->Left);
+	//	//std::cout << root->key << " ";
+	//	//display->printText(std::to_string(root->key),this->dis+=50,50);
+	//	//print_Tree(root->Right);
+	//}
 	if (leaf != NULL)
 	{
 		if (val == leaf->key)
 		{
-			display->printText(std::to_string(leaf->key), x, y);
+			display->printCircle(x, y);
+			display->printText(std::to_string(leaf->key), x, y - (display->getFontSize() / 2));
 			//y += 20;
 			return true;
 		}
+		display->printCircle(x, y);
+		
+		display->printText(std::to_string(leaf->key), x, y - (display->getFontSize() / 2));
 		y += 20;
-		display->printText(std::to_string(leaf->key), x, y);
 			
 		if (val<leaf->key)
 		{
-			x -= 25;
+			//x -= 25;
 
 			//display->printText("/", x , y);
-			display->printVector(x + 25, y, x, y + 20);
+			//display->printVector(x + 25, y, x, y + 20);
+			display->printVector(x + this->dis - display->getR() * 2.95, y - this->dis + display->getR(), x - this->dis, y + this->dis - display->getR());
 			//display->printText(std::to_string(leaf->Left->key), x, y);
-			return searchShow(val, leaf->Left,x-=60,y+40);
+			return searchShow(val, leaf->Left,x - this->dis, y + this->dis);
 		}
 		else
 		{
-			x += 50;
+			//x += 50;
 			//y += 20;
 			//display->printText("\\", x, y);
-			display->printVector(x - 25, y, x, y + 20);
+			//display->printVector(x - 25, y, x, y + 20);
 			//display->printText(std::to_string(leaf->Right->key), x, y);
-			return searchShow(val, leaf->Right,x+=75,y+40);
+			display->printVector(x + this->dis - display->getR()*1.07, y - this->dis + display->getR(), x + this->dis, y + this->dis - display->getR());
+			return searchShow(val, leaf->Right, x + this->dis, y + this->dis);
 		}
 	
 	}
@@ -250,9 +292,9 @@ node * bTree::searchNode(int val)
 	return searchNode(val, root);
 }
 
-void bTree::inorder()
+void bTree::print_Tree()
 {
-	inorder(root,this->width/2,30);
+	print_Tree(root,this->width/2,30);
 }
 
 void bTree::remove(int val)
@@ -307,7 +349,7 @@ void bTree::add_multiply_num()
 		system("cls");
 		this->clearDisplay();
 		this->insert(num);
-		this->inorder();
+		this->print_Tree();
 
 	}
 }
@@ -333,7 +375,7 @@ void bTree::add_single_num()
 	system("cls");
 	this->clearDisplay();
 	this->insert(num);
-	this->inorder();
+	this->print_Tree();
 }
 
 
@@ -370,7 +412,8 @@ void bTree::searchNum()
 	}
 	std::cout << std::endl;
 	system("cls");
-	//this->clearDisplay();
+	this->clearDisplay();
+	this->print_Tree();
 	//this->insert(num);
 	this->searchShow(num);
 }
@@ -397,12 +440,49 @@ void bTree::removeShow()
 	//this->remove(num);
 	this->delete_node(num);
 	this->clearDisplay();
-	this->inorder();
+	this->print_Tree();
 }
 
 void bTree::delete_node(int val)
 {
-	delete_node(&root, val);
+	if(searchNode(val)!=NULL)
+		delete_node(&root, val);
+	else
+	{
+		system("cls");
+		setConsoleColor(GUI::MessageType::T_ERROR);
+		std::cout << "[ERROR] Node with this value not found!\n";
+		setConsoleColor(GUI::MessageType::T_NORMAL);
+		Sleep(1000);
+	}
+
+}
+
+int bTree::wait_for_close_event()
+{
+	return this->display->wait_for_close();
+}
+
+void bTree::load_test_data()
+{
+	this->insert(3);
+	this->insert(2);
+	this->insert(55);
+	this->insert(-5);
+	this->insert(33);
+	this->insert(66);
+	this->insert(-17);
+	this->insert(-4);
+	this->insert(99);
+	this->insert(-20);
+	this->insert(-6);
+	this->insert(88);
+	this->insert(112);
+	this->insert(-18);
+
+
+	this->print_Tree();
+
 }
 
 

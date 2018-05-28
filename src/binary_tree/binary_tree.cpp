@@ -34,19 +34,27 @@ void print_main_menu_txt()
 	cout << "                 5. SHOW TREE\n";
 	cout << "                 6. TREE EMPTY CHECK\n";
 	cout << "                 7. SEARCH NUMBER IN TREE\n";
+	cout << "                 8. LOAD TEST DATA\n";
 	cout << "                 0. EXIT\n";
 	cout << "-----------------------------------------------------------\n";
+
+
+		
 }
 
-void print_menu()
+
+
+int print_menu()
 {
 	
 	bTree *tree = new bTree;
+	//tree->wait_for_close_event();
 	int input;
 	int value;
 	do
 	{
 		print_main_menu_txt();
+		cout << "CHOICE:";
 		cin >> input;
 		switch (input)
 		{
@@ -63,7 +71,7 @@ void print_menu()
 			//	cin >> value;
 			//	tree->remove(value);
 			//	tree->clearDisplay();
-			//	tree->inorder();
+			//	tree->print_Tree();
 			//}
 			//else
 			//{
@@ -99,7 +107,7 @@ void print_menu()
 			else
 			{
 				tree->clearDisplay();
-				tree->inorder();
+				tree->print_Tree();
 			}
 			break;
 		case 6:
@@ -119,7 +127,18 @@ void print_menu()
 			Sleep(1200);
 			break;
 		case 7:
-			tree->searchNum();
+			if(!tree->empty())
+				tree->searchNum();
+			else
+			{
+				setConsoleColor(GUI::MessageType::T_ERROR);
+				cout << "TREE IS EMPTY! ADD SOME NUMBERS!";
+				setConsoleColor(GUI::MessageType::T_NORMAL);
+				Sleep(1200);
+			}
+			break;
+		case 8:
+			tree->load_test_data();
 			break;
 		case 0:
 
@@ -128,6 +147,9 @@ void print_menu()
 		}
 		system("cls");
 	} while (input != 0);
+
+
+	return 1;
 }
 
 int main()
