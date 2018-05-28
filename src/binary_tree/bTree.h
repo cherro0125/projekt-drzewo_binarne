@@ -1,13 +1,28 @@
-#pragma once
+﻿#pragma once
 #include <iostream>
 #include "GUI/GUIUtility.h"
+/*
+ * \brief Klasa bazowa węzła w drzewie
+ */
 class node {
 public:
+	/*
+	 * \brief Wartość(klucz) węzła 
+	 */
 	int key;
+	/*
+	 * \brief Wskaźnik na lewego potomka
+	 */
 	node *Left;
+	/*
+	 * \brief Wskaźnik na prawego potomka
+	 */
 	node *Right;
+	/*
+	 * \brief Wskaźnik na rodzica
+	 */
 	node *Parent;
-	int get_val();
+
 
 };
 
@@ -34,6 +49,8 @@ public:
 	void delete_node(int val);
 	int wait_for_close_event();
 	void load_test_data();
+	GUI::GUIDisplay * get_display();
+	
 
 
 private:
@@ -57,6 +74,7 @@ private:
 	bool searchShow(int val, node *leaf, float x, float y);
 	node *isolate_predecessor(node **root);
 	void delete_node(node **root, int val);
+	
 
 
 	

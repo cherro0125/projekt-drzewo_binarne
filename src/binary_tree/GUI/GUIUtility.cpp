@@ -176,6 +176,14 @@ GUI::GUIDisplay::GUIDisplay(int width, int height)
 	this->display = NULL;
 	this->sample = NULL;
 	CreateDisplay(width, height);
+	event_queue = al_create_event_queue();
+	if (!event_queue) {
+		fprintf(stderr, "failed to create event_queue!\n");
+		al_destroy_display(display);
+		return ;
+	}
+
+	al_register_event_source(event_queue, al_get_display_event_source(display));
 	this->loadDefaultFont();
 	this->playSong();
 }
@@ -190,6 +198,8 @@ GUI::GUIDisplay::~GUIDisplay()
 	{
 		al_destroy_sample(this->sample);
 	}
+
+
 }
 
 void GUI::GUIDisplay::CreateDisplay(int width, int height)
@@ -228,6 +238,7 @@ void GUI::GUIDisplay::removeDisplay()
 	{
 		al_destroy_sample(this->sample);
 	}
+
 }
 
 void GUI::GUIDisplay::setTitle(std::string title)
@@ -319,16 +330,6 @@ int GUI::GUIDisplay::getFontSize()
 float GUI::GUIDisplay::getR()
 {
 	return this->circle_r;
-}
-
-int GUI::GUIDisplay::wait_for_close()
-{
-	ALLEGRO_EVENT ev;
-	ALLEGRO_EVENT_QUEUE *a_queue = NULL;
-	al_wait_for_event(a_queue, &ev);
-
-	if (ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE)
-		return 0;
 }
 
 

@@ -13,7 +13,10 @@
 
 
 using namespace std;
-
+/**
+ * \brief Funkcja wyświetla tekst głównego menu
+ * \return void
+ */
 void print_main_menu_txt()
 {
 	cout << "-----------------------------------------------------------\n";
@@ -43,16 +46,29 @@ void print_main_menu_txt()
 }
 
 
-
+/**
+ * \brief Funkcja wyświetla główne menu z jego obsługą
+ * \return void
+ */
 int print_menu()
 {
 	
 	bTree *tree = new bTree;
 	//tree->wait_for_close_event();
 	int input;
-	int value;
+
 	do
 	{
+		//ALLEGRO_EVENT ev;
+		//ALLEGRO_TIMEOUT timeout;
+		//al_init_timeout(&timeout, 0.06);
+
+		//bool get_event = al_wait_for_event_until(tree->get_display()->event_queue, &ev, &timeout);
+
+		//if (get_event && ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
+		//	break;
+		//}
+		
 		print_main_menu_txt();
 		cout << "CHOICE:";
 		cin >> input;
@@ -93,8 +109,8 @@ int print_menu()
 		case 4:
 			tree->destroy();
 			tree->clearDisplay();
-			tree->removeDisplay();
-			tree = new bTree;
+			//tree->removeDisplay();
+			//tree = new bTree;
 			break;
 		case 5:
 			if (tree->empty())
@@ -158,6 +174,9 @@ int main()
 	if (GUI::LoadAllegro() == GUI::ERROR_CODE)
 		return GUI::ERROR_CODE;
 	print_menu();
+		
+	
+	
 	//
 	//
 	//const int searchVal = 3;

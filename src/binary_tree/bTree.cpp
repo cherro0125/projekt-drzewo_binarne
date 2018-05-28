@@ -16,6 +16,7 @@ bTree::bTree(bool newDisplay)
 bTree::~bTree()
 {
 	destroy(root);
+	delete(root);
 }
 
 void bTree::insert(int val)
@@ -277,6 +278,8 @@ void bTree::delete_node(node ** root, int val)
 }
 
 
+
+
 void bTree::destroy()
 {
 	destroy(root);
@@ -458,18 +461,16 @@ void bTree::delete_node(int val)
 
 }
 
-int bTree::wait_for_close_event()
-{
-	return this->display->wait_for_close();
-}
 
 void bTree::load_test_data()
 {
+	this->destroy();
+	this->clearDisplay();
 	this->insert(3);
 	this->insert(2);
 	this->insert(55);
 	this->insert(-5);
-	this->insert(33);
+	this->insert(999);
 	this->insert(66);
 	this->insert(-17);
 	this->insert(-4);
@@ -483,6 +484,11 @@ void bTree::load_test_data()
 
 	this->print_Tree();
 
+}
+
+GUI::GUIDisplay * bTree::get_display()
+{
+	return this->display;
 }
 
 
@@ -523,7 +529,10 @@ void bTree::destroy(node *leaf)
 	{
 		destroy(leaf->Left);
 		destroy(leaf->Right);
-		delete leaf;
+		if (leaf != root)
+			delete leaf;
+		else
+			root = NULL;
 	}
 }
 
@@ -557,10 +566,4 @@ node * bTree::searchNode(int val, node * leaf)
 
 
 
-int node::get_val()
-{
-	if (this != NULL)
-		return this->key;
-	std::cout << "Wartosc nie wystepuje w drzewie!\n";
-	return -1;
-}
+
