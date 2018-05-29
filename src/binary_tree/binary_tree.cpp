@@ -12,6 +12,9 @@
 
 
 using namespace std;
+/** \defgroup fglowne Funkcje główne aplikacji
+*  Tutaj znajdują się wszystkie funkcje główne aplikacji
+*/
 /**
  * \brief Funkcja wyświetla tekst głównego menu
  * \return void
@@ -43,7 +46,11 @@ void print_main_menu_txt()
 
 		
 }
-
+/**
+ * \brief Funkcja wartownika w pętli oczekująca na zdarzenie zamknięcia okna Allegro (uruchomiona w osobnym wątku)
+ * \param tree btree* - wskaźnik na obiekt drzewa
+ * \return void
+ */
 void display_exit_thread(bTree *tree)
 {
 	while(true)
@@ -65,6 +72,7 @@ void display_exit_thread(bTree *tree)
 
 /**
  * \brief Funkcja wyświetla główne menu z jego obsługą
+ * \param tree btree* - wskaźnik na obiekt drzewa
  * \return void
  */
 int print_menu(bTree *tree)
@@ -160,6 +168,9 @@ int print_menu(bTree *tree)
 
 	return 1;
 }
+/**
+ * @}
+ */
 
 
 

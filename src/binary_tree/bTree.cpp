@@ -74,96 +74,15 @@ void bTree::print_Tree(node *root, float x, float y)
 	}
 }
 
-int bTree::minKey(node * root)
-{
-	node * x = root;
 
-	while ((x->Left)) x = x->Left;
 
-	return x->key;
-}
 
-int bTree::maxKey(node * root)
-{
-	node * x = root;
 
-	while ((x->Right)) x = x->Right;
 
-	return x->key;
-}
 
-node * bTree::minNode(node * root)
-{
-	node * x = root;
 
-	while ((x->Left)) x = x->Left;
 
-	return x;
-}
 
-node * bTree::maxNode(node * root)
-{
-	node * x = root;
-
-	while ((x->Right)) x = x->Right;
-
-	return x;
-}
-
-node * bTree::prevNode(node * x)
-{
-	if (x->Left) return maxNode(x->Left);
-
-	node * y;
-
-	do
-	{
-		y = x;
-		x = x->Parent;
-	} while (x && (x->Right != y));
-
-	return x;
-}
-
-node * bTree::nextNode(node * x)
-{
-	if (x->Right) return minNode(x->Right);
-
-	node * y;
-
-	do
-	{
-		y = x;
-		x = x->Parent;
-	} while (x && (x->Left != y));
-
-	return x;
-}
-
-node * bTree::remove(node ** root, node * x)
-{
-	
-	if(x)
-	{	
-		node * y = x->Parent, *z;
-		if ((x->Left) && (x->Right))
-		{
-			z = (rand() % 2) ? remove(root, prevNode(x)) : remove(root, nextNode(x));
-			z->Left = x->Left;   if (z->Left)  z->Left->Parent = z;
-			z->Right = x->Right; if (z->Right) z->Right->Parent = z;
-		}
-		else z = (x->Left) ? x->Left : x->Right;
-
-		if (z) z->Parent = y;
-
-		if (!y) *root = z;
-		else if (y->Left == x) y->Left = z; else y->Right = z;
-	}
-
-	
-
-	return x;
-}
 
 //TODO Wektory do poprawki 
 bool bTree::searchShow(int val, node * leaf,float x,float y) 
@@ -300,11 +219,7 @@ void bTree::print_Tree()
 	print_Tree(root,this->width/2,30);
 }
 
-void bTree::remove(int val)
-{
-	node *s = searchNode(val);
-	remove(&root, s);
-}
+
 
 void bTree::clearDisplay()
 {
