@@ -201,6 +201,11 @@ private:
 	* \param y float - współrzędna y wyświetlania
 	**/
 	bool searchShow(int val, node *leaf, float x, float y);
+	/**
+	* \brief Metoda izolująca poprzednika w drzewie w celu późniejszego usunięcia 
+	* \param root node ** - wskaźnik na wskaźnik korzeia drzewa
+	* \return node *
+	*/
 	node *isolate_predecessor(node **root);
 	/**
 	* \brief Metoda iteracyjna usuwająca węzeł o podanej wartości z drzewa (Metoda prywatna)
